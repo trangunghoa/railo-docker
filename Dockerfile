@@ -21,7 +21,7 @@ ADD start-apache2.sh /start-apache2.sh
 ADD railo.sh /railo.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
-RUN sudo service apache2 start
+
 
 
 # install railo
@@ -44,5 +44,10 @@ RUN chmod 755 /etc/service/railo/run
 # EXPOSE <port>
 EXPOSE 80 8888
 
-CMD ["/railo.sh"]
-CMD ["/start-apache2.sh"]
+#CMD ["/railo.sh"]
+#CMD ["/start-apache2.sh"]
+
+# Supervisord configuration
+RUN mkdir /var/log/supervisor
+ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+CMD ["/usr/bin/supervisord"]
