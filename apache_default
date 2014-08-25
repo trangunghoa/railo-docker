@@ -7,9 +7,11 @@
                 AllowOverride None
         </Directory>
         <Directory /var/www/html>
-                Options Indexes FollowSymLinks MultiViews
+                #Options Indexes FollowSymLinks MultiViews
+				DirectoryIndex index.cfm index.html 
                 # To make wordpress .htaccess work
-                AllowOverride FileInfo
+                #AllowOverride FileInfo
+				AllowOverride All
                 Order allow,deny
                 allow from all
         </Directory>
